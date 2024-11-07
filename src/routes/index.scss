@@ -1,0 +1,38 @@
+
+.img{
+    width:400px;
+    margin-top: 110px;
+    
+
+}
+.img1{
+    width:340px;
+    height:350px;
+    margin-top: 30px;
+    margin-left: 40px;
+
+   
+}
+.container{
+    display: flex;
+    height:450px;
+    margin-top: 40px;
+}
+
+.glass {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(164, 134, 247, 0.2));
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px); 
+    padding: 20px;
+    width:400px;
+    margin-left: 150px;
+    transition: all 0.3s ease;
+   
+}
+  .glass:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.15), 0 16px 48px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}

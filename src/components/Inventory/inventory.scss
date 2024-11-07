@@ -1,0 +1,73 @@
+.MuiBox-root{
+    @media screen and (max-width:768px) {
+        width: 97%;
+    }
+}
+
+.chatbot{
+    background-color: #282828;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 10px 30px 10px 30px;
+    color: #ececec;
+    font-weight: 550;
+    position: absolute;
+    margin-top: 53vh;
+    margin-left: 3vw;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(1.02);
+        transition: all 0.3s ease;
+    }
+}
+
+.main-heading{
+    font-size: 50px;
+
+    @media screen and (max-width:768px) {
+        font-size: 30px;
+    }
+}
+
+.main-heading{
+    font-size: 30px;
+    margin-left: -2vw;
+}
+
+.main-heading1{
+    position: absolute;
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 3vw;
+    width: 40%;
+    margin-top: 20vh;
+}
+
+.add-remove{
+
+    button{
+        margin-left: 2vw;
+    }
+
+    @media screen and (max-width:768px) {
+        padding-right: 10vw;
+    }
+}
+
+.MuiStack-root{
+    @media screen and (max-width:768px) {
+        width: 100%;
+    }
+}
+
+.MuiTypography-root{
+    @media screen and (max-width:768px) {
+    }
+}
+
+#search-box{
+    color: white;
+    font-weight: 600;
+}
