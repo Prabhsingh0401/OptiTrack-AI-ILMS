@@ -1,9 +1,11 @@
-'use client'
-
 import React, { useState, useRef, useEffect } from "react";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import './index.scss';  // Import the SCSS file
+import axios from "axios"; // You can keep axios for making requests to the backend
+import './index.scss'; // Import your SCSS file
 
+// Set Axios base URL globally (for production, make sure to use the correct environment URL)
+axios.defaults.baseURL = 'http://localhost:5000'; // Replace with the backend server URL in production
+
+// Component to display chat history
 const ChatHistory = ({ chatHistory }) => {
   const endOfMessagesRef = useRef(null);
 
@@ -26,36 +28,42 @@ const ChatHistory = ({ chatHistory }) => {
   );
 };
 
+// Main Chatbot Component
 const Chatbot = ({ onClose }) => {
   const [userInput, setUserInput] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  // Initialize your Gemini API
-  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const [errorMessage, setErrorMessage] = useState(""); // Error handling state
 
   // Function to handle user input
   const handleUserInput = (e) => {
     setUserInput(e.target.value);
   };
 
-  // Function to send user message to Gemini
+  // Function to send the message to the backend server
   const sendMessage = async () => {
     if (userInput.trim() === "") return;
 
     setIsLoading(true);
-    try {
-      const result = await model.generateContent(userInput);
-      const response = await result.response;
+    setErrorMessage(""); // Reset error message before sending new request
 
-      setChatHistory([
-        ...chatHistory,
+    try {
+      // Send the message to the backend server
+      const response = await axios.post('/api/chat', {
+        message: userInput,
+      });
+
+      const botMessage = response.data.message;
+
+      // Update chat history with the user's message and bot's response
+      setChatHistory((prevHistory) => [
+        ...prevHistory,
         { type: "user", message: userInput },
-        { type: "bot", message: response.text() },
+        { type: "bot", message: botMessage },
       ]);
-    } catch {
-      console.error("Error sending message");
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setErrorMessage(error.response?.data?.error || "Something went wrong. Please try again later.");
     } finally {
       setUserInput("");
       setIsLoading(false);
@@ -75,6 +83,9 @@ const Chatbot = ({ onClose }) => {
       <div className="chat-history">
         <ChatHistory chatHistory={chatHistory} />
       </div>
+
+      {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Display error message */}
+
       <div className="text-field-container">
         <input
           type="text"
@@ -89,8 +100,8 @@ const Chatbot = ({ onClose }) => {
           disabled={isLoading}
           className="send-button"
         >
-          Send
-        </button>
+          {isLoading ? 'Sending...' : 'Send'}
+        </button> {/* Change text to 'Sending...' while loading */}
         <button
           className="close-button"
           onClick={onClose}

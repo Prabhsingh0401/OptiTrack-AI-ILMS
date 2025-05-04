@@ -164,3 +164,94 @@
   padding: 10px;
   border-radius: 10px;
 }
+
+.chat-history-container {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.markdown-content {
+  font-size: 0.9rem;
+}
+
+.markdown-content a {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.markdown-content strong {
+  font-weight: bold;
+}
+
+.markdown-content em {
+  font-style: italic;
+}
+
+.markdown-content ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.markdown-content ol {
+  padding-left: 20px;
+  list-style-type: decimal;
+}
+
+.markdown-content blockquote {
+  margin: 1em 0;
+  padding-left: 10px;
+  border-left: 4px solid #d1d5db;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.bg-blue-100 {
+  background-color: #dbeafe;
+}
+
+.text-gray-800 {
+  color: #1f2937;
+}
+
+.text-blue-800 {
+  color: #1e3a8a;
+}
+
+.shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.max-h-96 {
+  max-height: 24rem; // TailwindCSS equivalent
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
